@@ -14,7 +14,9 @@ public class BallBehaviour : MonoBehaviour
 
     //Esto es para poder acceder al componente que se añadio, que es el Rigidbody2D, del personaje y tenerlo en un sola variable
     public Rigidbody2D rbBall;
-
+    ///Estas variables son para medir la velocidad de la pelota en "x" y "y"
+    public float speedBallX = 30;
+    public float speedBallY = 30;
 
 
 
@@ -50,7 +52,7 @@ public class BallBehaviour : MonoBehaviour
             //(0) es el clik izquierdo del mouse
             if(Input.GetMouseButtonDown(0)){
                 //esto es para la velocidad de nuestra pelota, que en este caso es "15 en x" y "15 en y", solo estamos usando 2 vectores por que solo nos intereza los valores en "x" y "y"
-                rbBall.velocity = new Vector2(15, 15);
+                rbBall.velocity = new Vector2(speedBallX, speedBallY);
                 //Esta variable indica que se inicio el juego
                 gameStarted = true;    
                 
