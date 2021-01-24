@@ -12,7 +12,7 @@ public class PlayerMovement : MonoBehaviour
     // Update is called once per frame
     void Update(){
         //Esto es para que en la consola nos aparesca la posicion del mouse
-        Debug.Log(Input.mousePosition);
+        //Debug.Log(Input.mousePosition);
 
         //Esta en Vector 3 para que podamos acceder a los 3 ejes "x", "y" y "z"
         //Esto es para que el player siga al mouse, es para el juego en celular y sigua nuestro dedo donde estemos 
