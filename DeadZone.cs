@@ -18,12 +18,13 @@ public class DeadZone : MonoBehaviour
     private int scorePlayerQuantity;
     //Esta variable es para contrar las anotaciones que les hicieron al enemigo
     private int scoreEnemyQuantity;
-    
+    //Lo que estamos haciendo es llamar a otro script desde una variable tenerla como referencia, en este caso es el script SceneChanger
+    public SceneChanger sceneChanger;
 
 
 
     //Esta funcion es casi lo mismo que la funcionOnCollisionEnter2D(), pero en esta en vez de colicionar es cuando la traspasa, es Trigger
-    private void OnTriggerEnter2D(Collider2D other) {
+    private void OnTriggerEnter2D(Collider2D ball) {
         Debug.Log("Trigger ufffffffff");
         
 
@@ -43,6 +44,16 @@ public class DeadZone : MonoBehaviour
             //estamos llamando a la funcion UpdateScoreLabel con sus respectivas condicionales
             UpdateScoreLabel(scorePlayerText, scorePlayerQuantity);
         }
+
+        //Lo que estamos haciendo es que cuando alguien anote el ball la pelotita regrese al player
+        //ball es la variable de la funcion OntriggerEnter2D
+        //GetComponent esta funcion nos sirve para conseguir algo de un objeto o script
+        //BallBehaviour este es el script al cual estamos accediendo
+        //gameStarted = false; esta es la variable que tenemos que cambiar para que la pelotita regrese al player
+        ball.GetComponent<BallBehaviour>().gameStarted = false;
+
+        //Estamos llamando a la funcion checkedScore
+        checkedScore();
     }
 
     //Esto es para poder que la variable que cuenta cuantas anotaciones metieron tenga el mismo valor que la que representa el Text del UI
@@ -52,6 +63,22 @@ public class DeadZone : MonoBehaviour
         //score.ToString() estamos haciendo que la variable score sea la misma que la variable label en terminos de valor
         //ToString() es para volver string la variable de score que es entero
         label.text = score.ToString();
+    }
+
+    //Esto es para medir el contador de las anotaciones
+    void checkedScore(){
+        //Esto es una restriccion de anotaciones que en este caso son 3, es para ver quien gano el player o enemy en las anotacions
+        
+        //Esto es para poner restricciones cuantas anotaciones le metio el player al enemy
+        if(scorePlayerQuantity >= 3){
+            //lo que estamos haciendo es llamar a la variable que hace referencia a el script SceneChanger, y estamos llamando a la funcion ChangeSceneTo
+            sceneChanger.ChangeSceneTo("WinScene");
+        }
+        //Esto es para poner restricciones cuantas anotaciones le metio el enemy al player
+        else if(scoreEnemyQuantity >= 3){
+            //lo que estamos haciendo es llamar a la variable que hace referencia a el script SceneChanger, y estamos llamando a la funcion ChangeSceneTo
+            sceneChanger.ChangeSceneTo("LoserScene");
+        }
     }
 
     

@@ -10,7 +10,7 @@ public class BallBehaviour : MonoBehaviour
     public Transform paddle;
 
     //esta variable es para que el booleano vea si nuestro juego ya a iniciado
-    bool gameStarted = false;
+    public bool gameStarted = false;
 
     //Esto es para poder acceder al componente que se añadio, que es el Rigidbody2D, del personaje y tenerlo en un sola variable
     public Rigidbody2D rbBall;
@@ -18,12 +18,17 @@ public class BallBehaviour : MonoBehaviour
     public float speedBallX = 30;
     public float speedBallY = 30;
 
-
+    //esta es para que cuando el ball esta en el transform del player, no se quede totalmente en sus ejes, que tenga un espacio
+    float posDif;
 
     // Start is called before the first frame update
     void Start()
     {
-        
+        //esta es para que cuando el ball esta en el transform del player, no se quede totalmente en sus ejes, que tenga un espacio
+        //paddle.position.x en esta parte estamos accediendo al position en eje x del pall que es el player
+        //transform.position.x es la posicion del ball en eje x
+        //lo estamos restando para que el ball no este en el mismo eje en x del player 
+        posDif = paddle.position.x - transform.position.x;
     }
 
     // Update is called once per frame
@@ -32,11 +37,7 @@ public class BallBehaviour : MonoBehaviour
         if(gameStarted == false){
             //Esto va a pasar su nuestro juego no a iniciado     
 
-            //esta es para que cuando el ball esta en el transform del player, no se quede totalmente en sus ejes, que tenga un espacio
-            //paddle.position.x en esta parte estamos accediendo al position en eje x del pall que es el player
-            //transform.position.x es la posicion del ball en eje x
-            //lo estamos restando para que el ball no este en el mismo eje en x del player 
-            float posDif = paddle.position.x - transform.position.x;
+
 
             //esto es para acceder al transform.position de la Ball y cambiarlo por el del player, pero que tenga un espacio
             //transform.position en esta parte estamos accediendo al transform de el ball
