@@ -21,6 +21,11 @@ public class BallBehaviour : MonoBehaviour
     //esta es para que cuando el ball esta en el transform del player, no se quede totalmente en sus ejes, que tenga un espacio
     float posDif;
 
+    //Esta variable es para incluir la musica de la pelotita
+    public AudioSource BallAudio;
+
+
+
     // Start is called before the first frame update
     void Start()
     {
@@ -64,7 +69,9 @@ public class BallBehaviour : MonoBehaviour
 
     }
 
+    //Esta funcion funcionar cuando la pelota colicione con algo
     private void OnCollisionEnter2D(Collision2D other) {
-            
+        //Esto es para encender la musica que pusiste cuando colicione
+        BallAudio.Play();
     }
 }

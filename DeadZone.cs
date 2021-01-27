@@ -20,6 +20,8 @@ public class DeadZone : MonoBehaviour
     private int scoreEnemyQuantity;
     //Lo que estamos haciendo es llamar a otro script desde una variable tenerla como referencia, en este caso es el script SceneChanger
     public SceneChanger sceneChanger;
+    //cuando te anotan un anotacion suene una cancion
+    public AudioSource AudioAnotacion;
 
 
 
@@ -27,7 +29,7 @@ public class DeadZone : MonoBehaviour
     private void OnTriggerEnter2D(Collider2D ball) {
         Debug.Log("Trigger ufffffffff");
         
-
+        AudioAnotacion.Play();
         //esto es para hacer el conteo de las anotaciones que le metieron al player
         //gameObject.tag estamos referenciando a el Tag "Left" que es el Tag que usa el arco de el player
         if(gameObject.tag == "Left"){
